@@ -48,6 +48,14 @@ const LiquidityInfoSchema = new Schema(
             type: Number,
             required: true,
         },
+        poolCreated: {
+            type: String,
+            required: true,
+        },
+        poolUpdated: {
+            type: String,
+            required: true,
+        },
         volume: Number,
         earned: Number,
         balance: Number,
