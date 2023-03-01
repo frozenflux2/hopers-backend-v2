@@ -83,8 +83,8 @@ const fetchLiquiditiesInfo = async () => {
                     token1Reserve,
                     token2Reserve,
                     ratio,
-                    poolCreated: liquiditiesFromDB[index].createdAt,
-                    poolUpdated: liquiditiesFromDB[index].updatedAt,
+                    poolCreated: String(liquiditiesFromDB[index].createdAt),
+                    poolUpdated: String(liquiditiesFromDB[index].updatedAt),
                 };
             });
             await Promise.all(fetchStakedLPBalanceQueries)
