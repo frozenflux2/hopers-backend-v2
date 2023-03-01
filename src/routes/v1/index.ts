@@ -5,6 +5,7 @@ import * as idoController from '../../controller/ido.controller';
 import * as liquidityController from '../../controller/liquidity.controller';
 import * as tokenController from '../../controller/token.controller';
 import * as cacheController from '../../controller/cache.controller';
+import * as debugController from '../../controller/debug.controller';
 
 const router = express.Router();
 
@@ -59,5 +60,10 @@ router.post('/token/backup', tokenController.backupTokens);
 //            Cache           //
 //============================//
 router.get('/cache', cacheController.getCacheValue);
+
+//============================//
+//            Debug           //
+//============================//
+router.get('/memory-usage', debugController.getMemoryUsage);
 
 export default router;
