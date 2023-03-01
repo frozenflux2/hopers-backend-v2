@@ -8,7 +8,6 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 const mongooseURI = process.env.MONGOOSE_URI;
 
-mongoose.set('strictQuery', false);
 mongoose
     .connect(mongooseURI)
     .then(() => {
