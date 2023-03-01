@@ -2,14 +2,14 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import main from './src/logic';
 import app from './src/app';
-import config from './src/config';
 // const port = config.port;
 dotenv.config();
 
 const port = process.env.PORT || 5000;
+const mongooseURI = process.env.MONGOOSE_URI;
 
 mongoose
-    .connect(config.mongooseURL)
+    .connect(mongooseURI)
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(port, () => {
