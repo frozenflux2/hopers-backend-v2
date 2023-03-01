@@ -22,6 +22,8 @@ export type TPool = {
     earned?: number;
     balance?: number;
     config?: TPoolConfig | TPoolConfig[];
+    poolCreated: string;
+    poolUpdated: string;
 };
 
 export type TLiquidity = {
