@@ -22,13 +22,17 @@ const chainCallingFunc = (
 
 const main = () => {
     console.log('---------- start new fetching ----------');
-    chainCallingFunc(fetchCollectionBidsInfo, null, FETCH_INTERVAL);
-    chainCallingFunc(fetchCollectionInfo, null, FETCH_INTERVAL);
-    chainCallingFunc(fetchIDOSaleInfo, null, FETCH_INTERVAL);
-    chainCallingFunc(fetchIDOStateInfo, null, FETCH_INTERVAL);
-    chainCallingFunc(fetchLiquiditiesInfo, null, FETCH_INTERVAL);
-    chainCallingFunc(fetchMarketplaceNFTs, null, FETCH_INTERVAL);
-    chainCallingFunc(fetchTokenPriceInfo, null, FETCH_INTERVAL);
+    try {
+        chainCallingFunc(fetchCollectionBidsInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchCollectionInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchIDOSaleInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchIDOStateInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchLiquiditiesInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchMarketplaceNFTs, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchTokenPriceInfo, null, FETCH_INTERVAL);
+    } catch (e) {
+        console.log('main logic err', e.message);
+    }
 };
 
 export default main;
