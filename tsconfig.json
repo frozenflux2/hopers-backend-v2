@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "importHelpers": true,
+        "jsx": "react",
+        "alwaysStrict": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "strictNullChecks": false,
+        "outDir": "./build",
+        "baseUrl": ".",
+        "paths": {
+            // "@server/*": ["src/*"],
+            // "@config/*": ["src/config/*"],
+            // "@model/*": ["src/model/*"],
+            // "@interface/*": ["src/interface/*"],
+            // "@utils/*": ["src/utils/*"],
+            // "@routes/*": ["src/routes/*"],
+            // "@controller/*": ["src/controller/*"]
+        }
+    },
+    "include": ["src/**/*", "index.ts", "store.ts"],
+    "exclude": ["node_modules"]
+}
