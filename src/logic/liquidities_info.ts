@@ -168,7 +168,6 @@ const fetchLiquiditiesInfo = async () => {
 
             for (const liquidity of liquidities) {
                 const { token1, token2 } = liquidity;
-                console.log('updating liquidity info', `${token1}-${token2}`);
                 LiquidityInfo.updateOne(
                     { token1, token2 },
                     liquidity,
@@ -180,11 +179,6 @@ const fetchLiquiditiesInfo = async () => {
                             console.log(
                                 'liquidity info saving error',
                                 err.message,
-                            );
-                        } else {
-                            console.log(
-                                'liquidity info updated',
-                                `${token1}-${token2}`,
                             );
                         }
                     },
