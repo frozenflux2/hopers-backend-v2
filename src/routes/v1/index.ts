@@ -10,6 +10,12 @@ import * as debugController from '../../controller/debug.controller';
 const router = express.Router();
 
 //============================//
+//           Default          //
+//============================//
+router.get('/', debugController.getMemoryUsage);
+router.get('/memory-usage', debugController.getMemoryUsage);
+
+//============================//
 //         Collections        //
 //============================//
 router.post('/collection/add', collectionController.addCollection);
@@ -60,10 +66,5 @@ router.post('/token/backup', tokenController.backupTokens);
 //            Cache           //
 //============================//
 router.get('/cache', cacheController.getCacheValue);
-
-//============================//
-//            Debug           //
-//============================//
-router.get('/memory-usage', debugController.getMemoryUsage);
 
 export default router;
