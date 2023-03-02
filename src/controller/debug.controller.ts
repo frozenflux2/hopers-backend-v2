@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
+import fetchLiquiditiesInfo from 'src/logic/liquidities_info';
 import { MAX_FETCH_ITEMS } from '../constants';
 import Collection from '../models/collection.model';
 import { MarketplaceInfo } from '../types';
@@ -45,44 +46,11 @@ export const test = async (
     res: Response,
     _next: NextFunction,
 ) => {
-    const collections: any = await getDataFromDB(Collection);
-    try {
-        const fetchCollectionBidsByAddress = async (address: string) => {
-            let offers: any[] = [];
-            const fetchCollectionBids = async (startAfter?: any) => {
-                const fetchedBidsResult = await runQuery(MarketplaceContract, {
-                    collection_bid_by_collection: {
-                        collection: address,
-                        start_after: startAfter,
-                        limit: MAX_FETCH_ITEMS,
-                    },
-                });
-                const fetchedBids = fetchedBidsResult?.bids || [];
-                offers = offers.concat(fetchedBids);
-                if (fetchedBids.length === MAX_FETCH_ITEMS) {
-                    await fetchCollectionBids(
-                        fetchedBids[MAX_FETCH_ITEMS - 1].bidder,
-                    );
-                }
-            };
-            await fetchCollectionBids();
-            return offers;
-        };
-        const queries = collections.map((collection: MarketplaceInfo) =>
-            fetchCollectionBidsByAddress(collection.nftContract),
-        );
-        Promise.all(queries)
-            .then((queryResults) => {
-                res.status(200).send({ collections, queryResults });
-            })
-            .catch((err) => {
-                res.status(400).send({ collections, message: err.message });
-            });
-    } catch (e) {
-        res.status(400).send({
-            collections,
-            message: e.message,
-            where: 'fetching',
+    fetchLiquiditiesInfo()
+        .then(() => {
+            res.status(200).send({ success: true });
+        })
+        .catch((err) => {
+            res.status(400).send({ success: false, error: err.message });
         });
-    }
 };
