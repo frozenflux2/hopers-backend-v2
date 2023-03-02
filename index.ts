@@ -13,9 +13,10 @@ mongoose
     .connect(mongooseURI)
     .then(() => {
         console.log('Connected to MongoDB');
+        main();
         app.listen(port, () => {
             console.log(`Listening to port ${port}`);
-            main();
+            // main();
         });
     })
     .catch((err) => {
