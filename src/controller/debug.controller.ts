@@ -25,7 +25,7 @@ export const getMemoryUsage = async (
                 memoryData.external,
             )} -> V8 external memory`,
         };
-        res.status(200).send({ ...memoryUsage });
+        res.status(200).send({ ...memoryUsage, env: process.env });
     } catch (e) {
         res.status(400).send({ message: e.message });
     }
