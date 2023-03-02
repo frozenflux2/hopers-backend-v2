@@ -23,6 +23,7 @@ const chainCallingFunc = (
 const main = () => {
     console.log('---------- start new fetching ----------');
     try {
+        fetchLiquiditiesInfo();
         chainCallingFunc(fetchCollectionBidsInfo, null, FETCH_INTERVAL);
         chainCallingFunc(fetchCollectionInfo, null, FETCH_INTERVAL);
         chainCallingFunc(fetchIDOSaleInfo, null, FETCH_INTERVAL);
