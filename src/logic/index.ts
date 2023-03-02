@@ -23,20 +23,20 @@ const chainCallingFunc = (
 const main = () => {
     console.log('---------- start new fetching ----------');
     try {
-        // chainCallingFunc(fetchCollectionBidsInfo, null, FETCH_INTERVAL);
-        // chainCallingFunc(fetchCollectionInfo, null, FETCH_INTERVAL);
-        // chainCallingFunc(fetchIDOSaleInfo, null, FETCH_INTERVAL);
-        // chainCallingFunc(fetchIDOStateInfo, null, FETCH_INTERVAL);
-        // chainCallingFunc(fetchLiquiditiesInfo, null, FETCH_INTERVAL);
-        // chainCallingFunc(fetchMarketplaceNFTs, null, FETCH_INTERVAL);
-        // chainCallingFunc(fetchTokenPriceInfo, null, FETCH_INTERVAL);
-        setInterval(fetchCollectionBidsInfo, FETCH_INTERVAL);
-        setInterval(fetchCollectionInfo, FETCH_INTERVAL);
-        setInterval(fetchIDOSaleInfo, FETCH_INTERVAL);
-        setInterval(fetchIDOStateInfo, FETCH_INTERVAL);
-        setInterval(fetchLiquiditiesInfo, FETCH_INTERVAL);
-        setInterval(fetchMarketplaceNFTs, FETCH_INTERVAL);
-        setInterval(fetchTokenPriceInfo, FETCH_INTERVAL);
+        chainCallingFunc(fetchCollectionBidsInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchCollectionInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchIDOSaleInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchIDOStateInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchLiquiditiesInfo, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchMarketplaceNFTs, null, FETCH_INTERVAL);
+        chainCallingFunc(fetchTokenPriceInfo, null, FETCH_INTERVAL);
+        // setInterval(fetchCollectionBidsInfo, FETCH_INTERVAL);
+        // setInterval(fetchCollectionInfo, FETCH_INTERVAL);
+        // setInterval(fetchIDOSaleInfo, FETCH_INTERVAL);
+        // setInterval(fetchIDOStateInfo, FETCH_INTERVAL);
+        // setInterval(fetchLiquiditiesInfo, FETCH_INTERVAL);
+        // setInterval(fetchMarketplaceNFTs, FETCH_INTERVAL);
+        // setInterval(fetchTokenPriceInfo, FETCH_INTERVAL);
     } catch (e) {
         console.log('main logic err', e.message);
     }

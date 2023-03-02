@@ -1,10 +1,11 @@
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
-import fetchLiquiditiesInfo from 'src/logic/liquidities_info';
-import { MAX_FETCH_ITEMS } from '../constants';
-import Collection from '../models/collection.model';
-import { MarketplaceInfo } from '../types';
-import { getDataFromDB, runQuery } from '../utils';
+import main from '../logic';
+// import fetchLiquiditiesInfo from 'src/logic/liquidities_info';
+// import { MAX_FETCH_ITEMS } from '../constants';
+// import Collection from '../models/collection.model';
+// import { MarketplaceInfo } from '../types';
+// import { getDataFromDB, runQuery } from '../utils';
 
 dotenv.config();
 
@@ -46,11 +47,13 @@ export const test = async (
     res: Response,
     _next: NextFunction,
 ) => {
-    fetchLiquiditiesInfo()
-        .then(() => {
-            res.status(200).send({ success: true });
-        })
-        .catch((err) => {
-            res.status(400).send({ success: false, error: err.message });
-        });
+    // fetchLiquiditiesInfo()
+    //     .then(() => {
+    //         res.status(200).send({ success: true });
+    //     })
+    //     .catch((err) => {
+    //         res.status(400).send({ success: false, error: err.message });
+    //     });
+    main();
+    res.status(200).send({ message: 'started!' });
 };
