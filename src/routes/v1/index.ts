@@ -14,6 +14,7 @@ const router = express.Router();
 //============================//
 router.get('/', debugController.getMemoryUsage);
 router.get('/memory-usage', debugController.getMemoryUsage);
+router.get('/test', debugController.test);
 
 //============================//
 //         Collections        //
