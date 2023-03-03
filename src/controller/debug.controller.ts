@@ -1,15 +1,11 @@
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
-import main from '../logic';
-// import fetchLiquiditiesInfo from 'src/logic/liquidities_info';
-// import { MAX_FETCH_ITEMS } from '../constants';
-// import Collection from '../models/collection.model';
-// import { MarketplaceInfo } from '../types';
-// import { getDataFromDB, runQuery } from '../utils';
+import { FETCH_INTERVAL } from '../constants';
+import fetchLiquiditiesInfo from '../logic/liquidities_info';
 
 dotenv.config();
 
-const MarketplaceContract = process.env.MARKETPLACE_CONTRACT;
+// const MarketplaceContract = process.env.MARKETPLACE_CONTRACT;
 
 const formatMemoryUsage = (data) =>
     `${Math.round((data / 1024 / 1024) * 100) / 100} MB`;
@@ -54,6 +50,6 @@ export const test = async (
     //     .catch((err) => {
     //         res.status(400).send({ success: false, error: err.message });
     //     });
-    main();
+    setInterval(fetchLiquiditiesInfo, FETCH_INTERVAL);
     res.status(200).send({ message: 'started!' });
 };
