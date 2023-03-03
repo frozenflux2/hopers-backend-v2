@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
-import { FETCH_INTERVAL } from '../constants';
 import fetchLiquiditiesInfo from '../logic/liquidities_info';
 
 dotenv.config();
@@ -43,13 +42,13 @@ export const test = async (
     res: Response,
     _next: NextFunction,
 ) => {
-    // fetchLiquiditiesInfo()
-    //     .then(() => {
-    //         res.status(200).send({ success: true });
-    //     })
-    //     .catch((err) => {
-    //         res.status(400).send({ success: false, error: err.message });
-    //     });
-    setInterval(fetchLiquiditiesInfo, FETCH_INTERVAL);
-    res.status(200).send({ message: 'started!' });
+    fetchLiquiditiesInfo()
+        .then(() => {
+            res.status(200).send({ success: true });
+        })
+        .catch((err) => {
+            res.status(400).send({ success: false, error: err.message });
+        });
+    // setInterval(fetchLiquiditiesInfo, FETCH_INTERVAL);
+    // res.status(200).send({ message: 'started!' });
 };
