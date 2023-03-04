@@ -20,7 +20,7 @@ const chainCallingFunc = (
     });
 };
 
-const main = () => {
+const mainLogic = () => {
     console.log('---------- start new fetching ----------');
     try {
         // chainCallingFunc(fetchCollectionBidsInfo, null, FETCH_INTERVAL);
@@ -42,4 +42,4 @@ const main = () => {
     }
 };
 
-export default main;
+export default mainLogic;
