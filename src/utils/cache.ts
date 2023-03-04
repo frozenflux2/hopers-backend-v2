@@ -5,18 +5,24 @@ export const saveCacheData = async (
     key: string,
     content: any,
 ) =>
-    new Promise((_resolve, reject) => {
+    new Promise((resolve, reject) => {
         if (!DB || !key || !content) return;
-        DB.updateOne(
-            { key },
-            content,
-            {
-                upsert: true,
-            },
-            (err) => {
-                reject(err);
-            },
-        );
+        try {
+            DB.updateOne(
+                { key },
+                { key, content },
+                {
+                    upsert: true,
+                },
+                (err, doc) => {
+                    if (err) reject(err);
+                    else resolve(doc);
+                },
+            );
+        } catch (e) {
+            reject(e);
+        }
+
         // DB.findOne({ key }, (err, doc) => {
         //     if (err) reject(err);
         //     if (doc) {
