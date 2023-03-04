@@ -37,6 +37,7 @@ const main = () => {
         setInterval(fetchLiquiditiesInfo, FETCH_INTERVAL);
         setInterval(fetchMarketplaceNFTs, FETCH_INTERVAL);
         setInterval(fetchTokenPriceInfo, FETCH_INTERVAL);
+        console.log('here');
     } catch (e) {
         console.log('main logic err', e.message);
     }
