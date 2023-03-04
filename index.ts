@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import app from './src/app';
-import main from './src/logic';
+import mainLogic from './src/logic';
 import fetchLiquiditiesInfo from './src/logic/liquidities_info';
 // const port = config.port;
 dotenv.config();
@@ -15,10 +15,10 @@ mongoose
     .then(() => {
         console.log('Connected to MongoDB');
         fetchLiquiditiesInfo();
-        main();
+        mainLogic();
         app.listen(port, () => {
             console.log(`Listening to port ${port}`);
-            // main();
+            // mainLogic();
         });
     })
     .catch((err) => {
