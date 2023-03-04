@@ -2,10 +2,10 @@
     "version": 2,
     "builds": [{
         "src": "**/*.ts",
-        "use": "@now/node"
+        "use": "@vercel/node"
     }],
     "routes": [{
         "src": "/(.*)",
-        "dest": "src/index.ts"
+        "dest": "index.ts"
     }]
 }
