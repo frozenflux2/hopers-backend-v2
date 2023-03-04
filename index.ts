@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import app from './app';
-import main from './logic';
-import fetchLiquiditiesInfo from './logic/liquidities_info';
+import app from './src/app';
+import main from './src/logic';
+import fetchLiquiditiesInfo from './src/logic/liquidities_info';
 // const port = config.port;
 dotenv.config();
 
