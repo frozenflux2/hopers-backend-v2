@@ -30,15 +30,17 @@ const fetchLiquiditiesInfo = async () => {
             let stakingQueryIndices: number[] = [];
             liquidities = liquiditiesInfoResult.map((liquidityInfo, index) => {
                 const pool =
-                    convertStringToNumber(liquidityInfo.lp_token_supply) / 1e6;
+                    convertStringToNumber(
+                        liquidityInfo?.lp_token_supply || '0',
+                    ) / 1e6;
 
                 const token1Reserve = convertStringToNumber(
-                    liquidityInfo.token1_reserve,
+                    liquidityInfo?.token1_reserve || '0',
                 );
                 const token2Reserve = convertStringToNumber(
-                    liquidityInfo.token2_reserve,
+                    liquidityInfo?.token2_reserve || '0',
                 );
-                const lpAddress = liquidityInfo.lp_token_address || '';
+                const lpAddress = liquidityInfo?.lp_token_address || '';
 
                 const stakingAddress = liquiditiesFromDB[index].stakingAddress;
                 if (stakingAddress) {
