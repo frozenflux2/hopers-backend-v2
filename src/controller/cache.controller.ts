@@ -7,6 +7,15 @@ import IdoInfo from '../models/idoInfo.model';
 import LiquidityInfo from '../models/liquidityInfo.model';
 import MarketplaceNfts from '../models/marketplaceNfts.model';
 import TokenPriceInfo from '../models/tokenPriceInfo.model';
+import {
+    fetchCollectionBidsInfo,
+    fetchCollectionInfo,
+    fetchIDOSaleInfo,
+    fetchIDOStateInfo,
+    fetchLiquiditiesInfo,
+    fetchMarketplaceNFTs,
+    fetchTokenPriceInfo,
+} from '../logic';
 
 const DBs = {
     collectionBidsInfo: { model: Bids, total: true, isArray: false },
@@ -60,4 +69,24 @@ export const getCacheValue = async (
     } catch (err) {
         next(err);
     }
+};
+
+export const updateCache = async (
+    _req: Request,
+    res: Response,
+    _next: NextFunction,
+) => {
+    Promise.all([
+        fetchCollectionBidsInfo,
+        fetchCollectionInfo,
+        fetchIDOSaleInfo,
+        fetchIDOStateInfo,
+        fetchLiquiditiesInfo,
+        fetchMarketplaceNFTs,
+        fetchTokenPriceInfo,
+    ])
+        .then(() => res.status(200).send({ success: true }))
+        .catch((e) =>
+            res.status(400).send({ success: false, message: e.message }),
+        );
 };
