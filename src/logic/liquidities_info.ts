@@ -6,7 +6,6 @@ import Token from '../models/token.model';
 import LiquidityInfo from '../models/liquidityInfo.model';
 
 export const fetchLiquiditiesInfo = async () => {
-    console.log('----- debug start fetching liqudiities info -----');
     const liquiditiesFromDB: any = await getDataFromDB(Liquidity);
     const tokenStatusFromDB: any = groupObject(
         await getDataFromDB(Token),
@@ -187,7 +186,6 @@ export const fetchLiquiditiesInfo = async () => {
                     },
                 );
             }
-            console.log('----- debug end fetching liquidities info -----');
         })
         .catch((err) => {
             console.log('fetch liquidities info error', err.message);
