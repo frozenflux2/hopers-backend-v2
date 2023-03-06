@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getCacheData } from '../utils';
+import { getCacheData, makePromiseFunction } from '../utils';
 import Bids from '../models/bids.model';
 import CollectionInfo from '../models/collectionInfo.model';
 import CollectionTraits from '../models/collectionTraits.model';
@@ -77,15 +77,17 @@ export const updateCache = async (
     _next: NextFunction,
 ) => {
     Promise.all([
-        fetchCollectionBidsInfo,
-        fetchCollectionInfo,
-        fetchIDOSaleInfo,
-        fetchIDOStateInfo,
-        fetchLiquiditiesInfo,
-        fetchMarketplaceNFTs,
-        fetchTokenPriceInfo,
+        makePromiseFunction(fetchCollectionBidsInfo),
+        makePromiseFunction(fetchCollectionInfo),
+        makePromiseFunction(fetchIDOSaleInfo),
+        makePromiseFunction(fetchIDOStateInfo),
+        makePromiseFunction(fetchLiquiditiesInfo),
+        makePromiseFunction(fetchMarketplaceNFTs),
+        makePromiseFunction(fetchTokenPriceInfo),
     ])
-        .then(() => res.status(200).send({ success: true }))
+        .then(() => {
+            res.status(200).send({ success: true });
+        })
         .catch((e) =>
             res.status(400).send({ success: false, message: e.message }),
         );
