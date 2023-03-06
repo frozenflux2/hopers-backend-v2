@@ -30,7 +30,7 @@ const getTraitsStatus = (
     return result;
 };
 
-const fetchMarketplaceNFTs = async () => {
+export const fetchMarketplaceNFTs = async () => {
     const collections: any = await getDataFromDB(Collection);
     for (const collection of collections) {
         let queries: any[] = [];
@@ -127,5 +127,3 @@ const fetchMarketplaceNFTs = async () => {
         );
     }
 };
-
-export default fetchMarketplaceNFTs;

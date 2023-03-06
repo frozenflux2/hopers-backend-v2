@@ -15,7 +15,7 @@ const getMin = (number: number, max?: number): number => {
     return maxNumber === number ? 0 : number;
 };
 
-const fetchCollectionInfo = async () => {
+export const fetchCollectionInfo = async () => {
     const collections: any = await getDataFromDB(Collection);
     for (const collection of collections) {
         try {
@@ -177,5 +177,3 @@ const fetchCollectionInfo = async () => {
         }
     }
 };
-
-export default fetchCollectionInfo;

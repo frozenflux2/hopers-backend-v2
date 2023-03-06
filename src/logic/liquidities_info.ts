@@ -5,7 +5,7 @@ import Liquidity from '../models/liquidity.model';
 import Token from '../models/token.model';
 import LiquidityInfo from '../models/liquidityInfo.model';
 
-const fetchLiquiditiesInfo = async () => {
+export const fetchLiquiditiesInfo = async () => {
     const liquiditiesFromDB: any = await getDataFromDB(Liquidity);
     const tokenStatusFromDB: any = groupObject(
         await getDataFromDB(Token),
@@ -192,5 +192,3 @@ const fetchLiquiditiesInfo = async () => {
         });
     // return { liquiditiesInfo: liquidities };
 };
-
-export default fetchLiquiditiesInfo;

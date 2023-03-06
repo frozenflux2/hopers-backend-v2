@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from 'express';
-import fetchLiquiditiesInfo from '../logic/liquidities_info';
+import { fetchLiquiditiesInfo } from '../logic/liquidities_info';
 
 dotenv.config();
 
