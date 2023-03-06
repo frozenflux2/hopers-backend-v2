@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import app from './src/app';
-import mainLogic from './src/logic';
+// import mainLogic from './src/logic';
 // const port = config.port;
 dotenv.config();
 
@@ -13,7 +13,7 @@ mongoose
     .connect(mongooseURI)
     .then(() => {
         console.log('Connected to MongoDB');
-        mainLogic();
+        // mainLogic();
         app.listen(port, () => {
             console.log(`Listening to port ${port}`);
             // mainLogic();
