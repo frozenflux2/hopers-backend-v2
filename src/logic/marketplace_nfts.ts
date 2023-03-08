@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import {
     buildNFTItem,
     getDataFromDB,
-    getQuery,
+    // getQuery,
     runQuery,
     saveCacheData,
 } from '../utils';
@@ -51,9 +51,10 @@ export const fetchMarketplaceNFTs = async () => {
                 }
             });
         }
-        let metaData: MetaDataItemType[] | null = collection.metaDataUrl
-            ? await getQuery({ url: collection.metaDataUrl })
-            : null;
+        // let metaData: MetaDataItemType[] | null = collection.metaDataUrl
+        //     ? await getQuery({ url: collection.metaDataUrl })
+        //     : null;
+        let metaData = null;
         if (metaData) {
             metaData = metaData?.sort((item1: any, item2: any) => {
                 if (item1.edition) {
