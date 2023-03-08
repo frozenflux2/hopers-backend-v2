@@ -15,7 +15,6 @@ app.use(morgan('tiny'));
 
 // fetch logic
 app.use((_req: Request, _res: Response, next: NextFunction) => {
-    console.log('debug here');
     mainLogic();
     next();
 });
