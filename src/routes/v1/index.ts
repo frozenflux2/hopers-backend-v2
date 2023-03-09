@@ -68,5 +68,6 @@ router.post('/token/backup', tokenController.backupTokens);
 //============================//
 router.get('/cache', cacheController.getCacheValue);
 router.get('/update-cache', cacheController.updateCache);
+router.get('/backup', cacheController.backupDatabase);
 
 export default router;

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getCacheData, makePromiseFunction } from '../utils';
+import { getCacheData, getDataFromDB, makePromiseFunction } from '../utils';
 import Bids from '../models/bids.model';
 import CollectionInfo from '../models/collectionInfo.model';
 import CollectionTraits from '../models/collectionTraits.model';
@@ -16,6 +16,7 @@ import {
     fetchMarketplaceNFTs,
     fetchTokenPriceInfo,
 } from '../logic';
+import { BackupDBs } from '../constants';
 
 const DBs = {
     collectionBidsInfo: { model: Bids, total: true, isArray: false },
@@ -91,4 +92,43 @@ export const updateCache = async (
         .catch((e) =>
             res.status(400).send({ success: false, message: e.message }),
         );
+};
+
+export const backupDatabase = async (
+    _req: Request,
+    res: Response,
+    _next: NextFunction,
+) => {
+    let dbKeys = [];
+    const getDataQueries = Object.keys(BackupDBs).map((key) => {
+        dbKeys.push(key);
+        return getDataFromDB(BackupDBs[key]);
+    });
+    Promise.all(getDataQueries)
+        .then((results) => {
+            const backupData = results.reduce(
+                (data, result, index) => ({
+                    ...data,
+                    [dbKeys[index]]: result,
+                }),
+                {},
+            );
+            const data = JSON.stringify(backupData);
+
+            const now = new Date();
+            // const dateString = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+            res.setHeader(
+                'Content-disposition',
+                `attachment; filename=HopersDatabaseBackup ${now.toString()}.json`,
+            );
+            res.setHeader('Content-type', 'application/json');
+            res.write(data, function (err) {
+                console.log('err', err);
+                res.end();
+            });
+        })
+        .catch((err) => {
+            console.log('promise err', err);
+            res.status(400).send({ success: false, message: err.message });
+        });
 };
